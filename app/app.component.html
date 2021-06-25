@@ -1,0 +1,115 @@
+
+
+<div class="container">
+<h1>{{ title }}</h1> 
+
+<!-- this hashtag is a template reference. this is used as an identifier to  -->
+<!-- used to refer to this form.   -->
+<!-- setting it equal to a directive allows us to use ngForm built in properties.  -->
+<form #orderForm="ngForm" (ngSubmit)="onSubmit_orderList(orderForm.value)">
+ <!-- ng submit is a directory, and says what to do when its clicked. on submit is defined in the controller .ts  -->
+  <div class="form-group"> 
+    <label>Name: </label>
+    <input [(ngModel)]="orderModel.name"
+	required 
+	minlength="8" maxlength="30"
+	#name="ngModel"
+	[class.is-invalid]="(name.invalid && name.touched)"
+	type="text" class="form-control" name="name">
+	<small class="text-danger" [class.d-none]="name.valid || name.untouched" >Please enter your name</small> 
+  </div>
+
+  <div class="form-group">
+    <label>Email: </label>
+    <input [(ngModel)]="orderModel.email" 
+	required
+	pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+	#email="ngModel"
+	[class.is-invalid]="email.invalid && email.touched"
+	type="email" class="form-control" name="email">
+	<small class="text-danger" [class.d-none]="email.valid || email.untouched">Please enter email in proper format.</small> 
+
+  </div>
+
+  <div class="form-group">
+    <label>Phone: </label>
+    <input [(ngModel)]="orderModel.phone" 
+	required
+	pattern="^\d{10}$"
+	#phone="ngModel"
+	[class.is-invalid]="phone.invalid && phone.touched"
+	type="tel" class="form-control" name="phone">
+	<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10 digits.</small> 
+
+  </div>
+  
+  <div class="form-group">
+    <select [(ngModel)]="orderModel.drink"
+            #drink_option="ngModel"
+            required
+            [class.is-invalid]="drink_option.invalid && drink_option.touched"
+            class="custom-select"
+            name="drink_option">
+      <option value="">What would you like to drink? </option>
+      <option *ngFor="let drink of drinks">{{ drink }}</option>
+    </select>
+    <small class="text-danger" [class.d-none]="drink_option.valid || drink_option.untouched">
+      Please select your drink</small>
+  </div>
+  
+  
+  
+  
+  
+
+  <div class="form-group">
+    <label>Hot or cold?</label>
+    <div class="form-check">
+      <input [(ngModel)]="orderModel.tempPreference" 
+	  class="form-check-input" type="radio" name="tempPreference" value="hot">
+      <label class="form-check-label">Hot</label>
+    </div>
+    <div class="form-check">
+      <input [(ngModel)]="orderModel.tempPreference" 
+	  class="form-check-input" type="radio" name="tempPreference" value="cold"> 
+      <label class="form-check-label">Cold</label>
+    </div>
+  </div>
+  
+  <div class="form-check mb-3">
+    <input [(ngModel)]="orderModel.sendText" 
+	class="form-check-input" type="checkbox" name="sendmsg">
+    <label class="form-check-label">Send me a text message when my order is ready </label>
+  </div>
+    
+  <button (click)="confirmOrder(orderForm.value)" 
+	[disabled]="!orderForm.form.valid"
+  class="btn btn-primary">Place order</button>
+</form>  
+<hr/>
+<p>response from php: {{ response | json }} </p>
+<!-- its called response because app.component.ts defined the global variable response and thats what got populated  -->
+<div *ngFor="let item of response"> 
+<!-- we dont know how many variables will be returned, so use ngFor to iterate  -->
+<!-- over it, this allows us to display however we want  -->
+	<p>{{ item.name }}, {{ item.email }}, {{ item.order_date }}  </p> 
+
+</div> 
+
+<hr/> 
+<!-- putting | json just makes the array values more readable. this is for  -->
+<!-- content creators only. dont actually spit data out to a webpage like this -->
+<p>From form: {{ orderForm.value | json}} </p> 
+<p>from model: {{ orderModel | json}} </p>
+
+<hr/>
+<h3>Order Confirmation</h3>
+<i><font color="green">Display your confirmation message</font></i>  <br/>
+Data submitted: 
+<i><font color="green">Display the submitted order</font></i>
+
+</div>
+
+
+<br/><br/><br/>
+
