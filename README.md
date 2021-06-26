@@ -1,1 +1,9 @@
 "# Promo-code-exchange-website" 
+Let me start by explaining how I came up with this idea. I had just downloaded CashApp, a money transferring mobile application very similar to venmo, and the first thing the app asked me to do was create an account. One of the fields I could optionally fill out was to enter a promo code.
+Some background knowledge: 
+Every CashApp account has an associated 6-letter promo code unique to their account. 
+Upon creating an account, if the new user enters in the promo code of an already existing account, both accounts get a $5 bonu. This incentivizes users to encourage their friends to download the app. 
+I didn’t want to text my friends to see who already has CashApp to use their promo code, because this would take too long and I wanted to make my account right then. Ideally, I would be able to instantly get a promo code to use, but also guarantee that my personalized promo code (which I will receive after creating my account) gets used by someone else. I began googling around for a promo code exchange website, but couldn’t find any. This is a gap in the market that I would like to fill. 
+
+Here’s how it would work: 
+When you click the website, it takes you to the home page, which displays icons of different apps that use promo codes, such as CashApp, Robinhood, DoorDash, etc. The user clicks the app they are interested in, and it will pull up a page giving a short description of the app, as well as what bonus is provided for using promo codes. The user can click “get promo code,” which will display the promo code that was at the top of a queue. After the user uses that promo code, they enter in their own promo code, which is placed at the bottom of the queue, which will in turn be given to someone else eventually. When using this website, you get the bonus twice, first when you use the promo code given to you by the website, and a second time when someone later on uses your promo code. 
